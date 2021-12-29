@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "Sound/SoundCue.h"
 #include "MyClass.generated.h"
 
@@ -241,6 +242,7 @@ public:
 //     virtual void SetAnimationState() const = 0;
 // };
 
+// from here, enums and structs are not added to dummy class.
     
 USTRUCT(BlueprintType)
 struct FTeam
@@ -289,10 +291,44 @@ struct FVSFX
     USoundCue* SFX;
 };
 
+UENUM(BlueprintType)
+enum class EValueModifierType:uint8
+{
+    Flat,
+    Ratio,
+    Expired // expired stands with flat and ratio on purpose. this is by design.
+};
 
+USTRUCT()
+struct FStatModifier
+{
+    GENERATED_BODY()
+    
+    UPROPERTY()
+    EValueModifierType ValueModifier;
+    UPROPERTY()
+    float Value;
+    // UPROPERTY()
+    // FGameplayTagContainer Tags;
+    UPROPERTY()
+    EStatusType Type;
+};
 
-
-
+// /** Interface for actors that expose access to an skill manager component */
+// UINTERFACE()
+// class USkillInterface : public UInterface
+// {
+//     GENERATED_UINTERFACE_BODY()
+// };
+//
+// // class BIGMAK_API ISkillInterface
+// class  ISkillInterface
+// {
+//      GENERATED_IINTERFACE_BODY()
+// //
+// //     /** Returns the ability system component to use for this actor. It may live on another actor, such as a Pawn using the PlayerState's component */
+// //     virtual UObject* GetAbilitySystemComponent() const = 0;
+// };
 
 /**
  * ==================================================================================================================
