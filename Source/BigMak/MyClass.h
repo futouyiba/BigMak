@@ -314,8 +314,8 @@ struct FStatModifier
     EStatusType Type;
 };
 
-// /** Interface for actors that expose access to an skill manager component */
-// UINTERFACE()
+/** Interface for actors that expose access to an skill manager component */
+// UINTERFACE(MinimalAPI)
 // class USkillInterface : public UInterface
 // {
 //     GENERATED_UINTERFACE_BODY()
