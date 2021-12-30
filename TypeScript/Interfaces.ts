@@ -1,10 +1,15 @@
 import * as UE from 'ue'
-import { SDamageResult } from "./Structs";
+import {SDamageResult} from "./Structs";
 import CombatManagerBase from './CombatManagerBase'
+import {SkillManager} from "./SkillManager";
+import StatManager from "./StatManager";
+import {NetworkModifierManager} from "./NetworkModifierManager";
+import {ChatManager} from "./ChatManager";
+import ActionManger from "./ActionManger";
 
 export interface ICombat{
     // return: DiedFromDamages as boolean.
-    TakeDamge(InDamageResult:SDamageResult):boolean;
+    TakeDamage(InDamageResult:SDamageResult):boolean;
     // return: Received as boolean.
     OnDeath(InDamageResult:SDamageResult):boolean;
     FindTeam(ReturnTeam:UE.Team)
@@ -17,4 +22,24 @@ export interface ICombat{
 
 export interface IAnimCommunication{
     SetAnimationState(NewAnimState:UE.EAnimationState):void;
+}
+
+export interface ISkill{
+    FindSkillManager():SkillManager;
+}
+
+export interface IStats{
+    FindStatsManager():StatManager;
+}
+
+export interface INetworkModifier{
+    FindNetworkModifierManager():NetworkModifierManager;
+}
+
+export interface IChat{
+    GetChatManager():ChatManager;
+}
+
+export interface IAction{
+    FindActionManager():ActionManger;
 }

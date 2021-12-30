@@ -9,6 +9,13 @@ class GlobalDamageModifier extends ue.Object {
     @uproperty.uproperty(ue.uproperty.ExposeOnSpawn)
     Target:CombatManagerBase;// todo add "expose on spawn"
 
+    constructor(Target:CombatManagerBase,  Outer?: ue.Object, Name?: string, ObjectFlags?: number){
+        super(Outer,Name, ObjectFlags);
+        this.Target = Target;
+
+
+    }
+
     bOffensiveModifier:boolean=false;
 
     ReturnDamageModifier(InDamageResult:SDamageResult):{FlatBonus:number, RatioBonus: number}{

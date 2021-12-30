@@ -1,7 +1,8 @@
 import * as UE from 'ue'
-import {edit_on_instance, PrimitiveComponent} from 'ue'
+import {edit_on_instance, ETeam, PrimitiveComponent, TArray, Team} from 'ue'
 import WGT_FloatingTextGenerator from './WGT_FloatingTextGenerator';
 import { SHitFeedbackSlot } from './Structs';
+import GlobalDamageModifier from "./GlobalDamageModifier";
 
 
 class CombatManagerBase extends UE.ActorComponent{
@@ -32,9 +33,21 @@ class CombatManagerBase extends UE.ActorComponent{
     MaterialFeedbackBodies:UE.TArray<UE.PrimitiveComponent>;
     FeedbackMaterialTimer:UE.TimerHandle;
     HitFeedbackSlots:UE.TMap<PrimitiveComponent,SHitFeedbackSlot>
+    GlobalCombatModifiers: TArray<GlobalDamageModifier>;
+
+    GetOwningTeam():Team{
+        //todo
+        return;
+    }
+
+
 
     ReceiveBeginPlay(){
 
+    }
+
+    SetTeam(NewTeam: ETeam) {
+        return;//todo
     }
 }
 
