@@ -2,7 +2,7 @@ import * as UE from 'ue'
 import { SDamageResult } from "./Structs";
 import CombatManagerBase from './CombatManagerBase'
 
-interface ICombat{
+export interface ICombat{
     // return: DiedFromDamages as boolean.
     TakeDamge(InDamageResult:SDamageResult):boolean;
     // return: Received as boolean.

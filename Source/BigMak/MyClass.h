@@ -375,4 +375,7 @@ public:
 
     UPROPERTY()
     FTeam Team;
+    
+    UPROPERTY()
+    EStat Stat;
 };

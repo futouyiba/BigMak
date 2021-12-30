@@ -1,10 +1,11 @@
 import * as UE from 'ue'
-import {Action, edit_on_instance, ETeam, TArray} from 'ue'
+import {Action, edit_on_instance, ETeam, TArray, TSubclassOf} from 'ue'
 import Skill from "./Skill";
 import ActionManger from "./ActionManger";
 import StatManager from "./StatManager";
 import {SSkillCost} from "./Structs";
 import GlobalDamageModifier from "./GlobalDamageModifier";
+import {ICombat} from './Interfaces'
 
 class Modifier extends UE.Object{
  @edit_on_instance()
@@ -41,6 +42,33 @@ class Modifier extends UE.Object{
  bSkillTagsModified:boolean=false;
 
  AppliedGlobalModifiers:TArray<GlobalDamageModifier>;
+
+ DisabledRegenerations:TArray<UE.EStat>;
+
+ StoredInitialGameplayTags:UE.GameplayTagContainer;
+
+ WantedSkillToModify:TSubclassOf<Skill>;
+
+ RemoveAllModifiers():void{
+  //todo
+ }
+
+ RemoveTeamModifier():void{
+  if (!this.StoredInitialTeam) return;
+  //todo
+
+ }
+
+ RemoveGlobalModifiers():void{
+  let n = this.AppliedGlobalModifiers.Num();
+  if (n<=0) return;
+  let target = <ICombat>(this.GetModTarget());
+  if (!target) return;
+ }
+
+ GetModTarget():UE.Object{
+  return this.Target;
+ }
 }
 
 export default Modifier;
