@@ -78,3 +78,4 @@ DerivedDataCache/*
 Content/Blueprints/TypeScript/*
 Content/JavaScript/*
 ts_file_versions_info.json
+Plugins/Puerts/Typing/ue/ue.d.ts

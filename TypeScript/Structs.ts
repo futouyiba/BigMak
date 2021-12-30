@@ -8,3 +8,4 @@ export class SDamageResult {
     // Owner:CombatManagerBase;
     ExtraMultiplier: number;
 }
+

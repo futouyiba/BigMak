@@ -37,7 +37,7 @@ enum class EStat:uint8
     Stack,
     Recast,
     Mastery,
-    Firerate,
+    FireRate,
     MaxChargeTime,
     Duration,
     MaxHitResult,
@@ -224,7 +224,7 @@ public:
 // from here, enums and structs are not added to dummy class.
     
 USTRUCT(BlueprintType)
-struct FCppTeam
+struct FTeam
 {
     GENERATED_BODY()
 
@@ -366,4 +366,13 @@ public:
 
     UPROPERTY()
     UAN_SkillEvent* Uan_SkillEvent;
+
+    UPROPERTY()
+    FStatModifier StatModifier;
+
+    UPROPERTY()
+    FVSFX VSFX;
+
+    UPROPERTY()
+    FTeam Team;
 };
