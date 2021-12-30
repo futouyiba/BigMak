@@ -175,28 +175,7 @@ enum class EActionTrigger:uint8
 };
 
 USTRUCT(BlueprintType)
-struct FSAction
-{
-    GENERATED_BODY()
-public:
-    UPROPERTY()
-    FText Name;
-
-    UPROPERTY()
-    EAction Action;
-
-    UPROPERTY()
-    TArray<EAction> Prevents;
-
-    UPROPERTY()
-    TArray<EAction> Cancels;
-
-    UPROPERTY()
-    FString Inputs;
-};
-
-USTRUCT(BlueprintType)
-struct FSInput
+struct FInput
 {
     GENERATED_BODY()
 public:
@@ -374,10 +353,10 @@ public:
     EActionTrigger ActionTrigger;
 
     UPROPERTY()
-    FSAction SAction;
+    FAction SAction;
     
     UPROPERTY()
-    FSInput SInput;
+    FInput SInput;
     
     UPROPERTY()
     EAttackingState AttackingState;
