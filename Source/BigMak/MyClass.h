@@ -224,7 +224,7 @@ public:
 // from here, enums and structs are not added to dummy class.
     
 USTRUCT(BlueprintType)
-struct FTeam
+struct FCppTeam
 {
     GENERATED_BODY()
 

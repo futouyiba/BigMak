@@ -12399,6 +12399,13 @@ declare module "ue" {
         static Load(InName: string): ActorHitSignature__PythonCallable;
     }
     
+    class ActorMacros_C extends Actor {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): ActorMacros_C;
+        static Load(InName: string): ActorMacros_C;
+    }
+    
     class ActorOnClickedSignature__PythonCallable extends PythonCallableForDelegate {
         constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
         static StaticClass(): Class;
@@ -22821,6 +22828,97 @@ declare module "ue" {
         static Load(InName: string): BlueprintEditorToolMenuContext;
     }
     
+    enum ETutorialContent { None, Text, UDNExcerpt, RichText, ETutorialContent_MAX}
+    class TutorialContent {
+        constructor();
+        constructor(Type: ETutorialContent, Content: string, ExcerptName: string, Text: string);
+        Type: ETutorialContent;
+        Content: string;
+        ExcerptName: string;
+        Text: string;
+        static StaticClass(): Class;
+    }
+    
+    enum ETutorialAnchorIdentifier { None, NamedWidget, Asset, ETutorialAnchorIdentifier_MAX}
+    class TutorialContentAnchor {
+        constructor();
+        constructor(Type: ETutorialAnchorIdentifier, WrapperIdentifier: string, Asset: SoftObjectPath, bDrawHighlight: boolean, TabToFocusOrOpen: string, FriendlyName: string, GUIDString: string, OuterName: string);
+        Type: ETutorialAnchorIdentifier;
+        WrapperIdentifier: string;
+        Asset: SoftObjectPath;
+        bDrawHighlight: boolean;
+        TabToFocusOrOpen: string;
+        FriendlyName: string;
+        GUIDString: string;
+        OuterName: string;
+        static StaticClass(): Class;
+    }
+    
+    class TutorialWidgetContent {
+        constructor();
+        constructor(Content: TutorialContent, WidgetAnchor: TutorialContentAnchor, HorizontalAlignment: EHorizontalAlignment, VerticalAlignment: EVerticalAlignment, Offset: Vector2D, ContentWidth: number, bAutoFocus: boolean);
+        Content: TutorialContent;
+        WidgetAnchor: TutorialContentAnchor;
+        HorizontalAlignment: EHorizontalAlignment;
+        VerticalAlignment: EVerticalAlignment;
+        Offset: Vector2D;
+        ContentWidth: number;
+        bAutoFocus: boolean;
+        static StaticClass(): Class;
+    }
+    
+    class TutorialStage {
+        constructor();
+        constructor(Name: string, Content: TutorialContent, WidgetContent: TArray<TutorialWidgetContent>, NextButtonText: string, BackButtonText: string, PlatformsToTest: TArray<string>, bInvertPlatformTest: boolean);
+        Name: string;
+        Content: TutorialContent;
+        WidgetContent: TArray<TutorialWidgetContent>;
+        NextButtonText: string;
+        BackButtonText: string;
+        PlatformsToTest: TArray<string>;
+        bInvertPlatformTest: boolean;
+        static StaticClass(): Class;
+    }
+    
+    class EditorTutorial extends Object {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        Title: string;
+        SortOrder: number;
+        Icon: string;
+        Texture: Texture2D;
+        Category: string;
+        SummaryContent: TutorialContent;
+        Stages: TArray<TutorialStage>;
+        PreviousTutorial: SoftClassPath;
+        NextTutorial: SoftClassPath;
+        bIsStandalone: boolean;
+        AssetToUse: SoftObjectPath;
+        ImportPath: string;
+        bHideInBrowser: boolean;
+        SearchTags: string;
+        GetActorReference(PathToActor: string) : Actor;
+        OnTutorialClosed() : void;
+        OnTutorialLaunched() : void;
+        OnTutorialStageEnded(StageName: string) : void;
+        OnTutorialStageStarted(StageName: string) : void;
+        static BeginTutorial(TutorialToStart: $Nullable<EditorTutorial>, bRestart: boolean) : void;
+        static GetEngineFolderVisibilty() : boolean;
+        static GoToNextTutorialStage() : void;
+        static GoToPreviousTutorialStage() : void;
+        static OpenAsset(Asset: $Nullable<Object>) : void;
+        static SetEngineFolderVisibilty(bNewVisibility: boolean) : void;
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): EditorTutorial;
+        static Load(InName: string): EditorTutorial;
+    }
+    
+    class BlueprintEditorTutorial_C extends EditorTutorial {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): BlueprintEditorTutorial_C;
+        static Load(InName: string): BlueprintEditorTutorial_C;
+    }
+    
     class BlueprintFactory extends Factory {
         constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
         ParentClass: Class;
@@ -23332,6 +23430,23 @@ declare module "ue" {
         static StaticClass(): Class;
         static Find(OrigInName: string, Outer?: Object): BoxReflectionCaptureComponent;
         static Load(InName: string): BoxReflectionCaptureComponent;
+    }
+    
+    enum EAnimationState { Idle, Defensive, Offensive, Dead, Charging, Stunned, Channeling, EAnimationState_MAX}
+    class TS_Player_C extends Character {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        SetAnimationState(NewAnimationState: EAnimationState) : void;
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): TS_Player_C;
+        static Load(InName: string): TS_Player_C;
+    }
+    
+    class BP_Player_C extends TS_Player_C {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        damageResult: boolean;
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): BP_Player_C;
+        static Load(InName: string): BP_Player_C;
     }
     
     class TextureLightProfile extends Texture2D {
@@ -26586,6 +26701,14 @@ declare module "ue" {
         static Load(InName: string): ColorBinding;
     }
     
+    class CombatManagerBase_C extends ActorComponent {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        testCls: EAnimationState;
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): CombatManagerBase_C;
+        static Load(InName: string): CombatManagerBase_C;
+    }
+    
     class ComboBox extends Widget {
         constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
         Items: TArray<Object>;
@@ -29568,7 +29691,6 @@ declare module "ue" {
     enum EStatusStackType { ResetsDuration, AddsDuration, Both, None, EStatusStackType_MAX}
     enum EAction { None, Jump, PrimarySkill, Reload, Sprint, Move, PrimaryFire, SecondaryFire, SecondarySkill, ThirdSkill, Interact, ThrowWeapon, FourthSkill, SwitchTeam, SwitchCharacter, CancelMove, Zoom, ToggleMenu, EAction_MAX}
     enum EAIState { Idle, Seeking, Attacking, Stunned, EAIState_MAX}
-    enum EAnimationState { Idle, Defensive, Offensive, Dead, Charging, Stunned, Channeling, EAnimationState_MAX}
     enum ECustomSkillInfo { CriticalRoll, YourCustomValue, ECustomSkillInfo_MAX}
     enum EActionTrigger { Start, Stop, Cancel, EActionTrigger_MAX}
     class Action {
@@ -31347,90 +31469,6 @@ declare module "ue" {
         static StaticClass(): Class;
         static Find(OrigInName: string, Outer?: Object): EditorSubsystemBlueprintLibrary;
         static Load(InName: string): EditorSubsystemBlueprintLibrary;
-    }
-    
-    enum ETutorialContent { None, Text, UDNExcerpt, RichText, ETutorialContent_MAX}
-    class TutorialContent {
-        constructor();
-        constructor(Type: ETutorialContent, Content: string, ExcerptName: string, Text: string);
-        Type: ETutorialContent;
-        Content: string;
-        ExcerptName: string;
-        Text: string;
-        static StaticClass(): Class;
-    }
-    
-    enum ETutorialAnchorIdentifier { None, NamedWidget, Asset, ETutorialAnchorIdentifier_MAX}
-    class TutorialContentAnchor {
-        constructor();
-        constructor(Type: ETutorialAnchorIdentifier, WrapperIdentifier: string, Asset: SoftObjectPath, bDrawHighlight: boolean, TabToFocusOrOpen: string, FriendlyName: string, GUIDString: string, OuterName: string);
-        Type: ETutorialAnchorIdentifier;
-        WrapperIdentifier: string;
-        Asset: SoftObjectPath;
-        bDrawHighlight: boolean;
-        TabToFocusOrOpen: string;
-        FriendlyName: string;
-        GUIDString: string;
-        OuterName: string;
-        static StaticClass(): Class;
-    }
-    
-    class TutorialWidgetContent {
-        constructor();
-        constructor(Content: TutorialContent, WidgetAnchor: TutorialContentAnchor, HorizontalAlignment: EHorizontalAlignment, VerticalAlignment: EVerticalAlignment, Offset: Vector2D, ContentWidth: number, bAutoFocus: boolean);
-        Content: TutorialContent;
-        WidgetAnchor: TutorialContentAnchor;
-        HorizontalAlignment: EHorizontalAlignment;
-        VerticalAlignment: EVerticalAlignment;
-        Offset: Vector2D;
-        ContentWidth: number;
-        bAutoFocus: boolean;
-        static StaticClass(): Class;
-    }
-    
-    class TutorialStage {
-        constructor();
-        constructor(Name: string, Content: TutorialContent, WidgetContent: TArray<TutorialWidgetContent>, NextButtonText: string, BackButtonText: string, PlatformsToTest: TArray<string>, bInvertPlatformTest: boolean);
-        Name: string;
-        Content: TutorialContent;
-        WidgetContent: TArray<TutorialWidgetContent>;
-        NextButtonText: string;
-        BackButtonText: string;
-        PlatformsToTest: TArray<string>;
-        bInvertPlatformTest: boolean;
-        static StaticClass(): Class;
-    }
-    
-    class EditorTutorial extends Object {
-        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
-        Title: string;
-        SortOrder: number;
-        Icon: string;
-        Texture: Texture2D;
-        Category: string;
-        SummaryContent: TutorialContent;
-        Stages: TArray<TutorialStage>;
-        PreviousTutorial: SoftClassPath;
-        NextTutorial: SoftClassPath;
-        bIsStandalone: boolean;
-        AssetToUse: SoftObjectPath;
-        ImportPath: string;
-        bHideInBrowser: boolean;
-        SearchTags: string;
-        GetActorReference(PathToActor: string) : Actor;
-        OnTutorialClosed() : void;
-        OnTutorialLaunched() : void;
-        OnTutorialStageEnded(StageName: string) : void;
-        OnTutorialStageStarted(StageName: string) : void;
-        static BeginTutorial(TutorialToStart: $Nullable<EditorTutorial>, bRestart: boolean) : void;
-        static GetEngineFolderVisibilty() : boolean;
-        static GoToNextTutorialStage() : void;
-        static GoToPreviousTutorialStage() : void;
-        static OpenAsset(Asset: $Nullable<Object>) : void;
-        static SetEngineFolderVisibilty(bNewVisibility: boolean) : void;
-        static StaticClass(): Class;
-        static Find(OrigInName: string, Outer?: Object): EditorTutorial;
-        static Load(InName: string): EditorTutorial;
     }
     
     class EditorTutorialFactory extends Factory {
@@ -61369,6 +61407,25 @@ declare module "ue" {
         static Load(InName: string): PropertyValueVisibility;
     }
     
+    class PROTO_BP_AnimBlueprint_0_C extends AnimInstance {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        UberGraphFrame: PointerToUberGraphFrame;
+        AnimGraphNode_Root: AnimNode_Root;
+        AnimGraph(AnimGraph: $Ref<PoseLink>) : void;
+        ExecuteUbergraph_PROTO_BP_AnimBlueprint_0(EntryPoint: number) : void;
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): PROTO_BP_AnimBlueprint_0_C;
+        static Load(InName: string): PROTO_BP_AnimBlueprint_0_C;
+    }
+    
+    class PROTO_BP_Blueprint_0_C extends Actor {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        DefaultSceneRoot: SceneComponent;
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): PROTO_BP_Blueprint_0_C;
+        static Load(InName: string): PROTO_BP_Blueprint_0_C;
+    }
+    
     class ProxyLODMeshSimplificationSettings extends DeveloperSettings {
         constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
         ProxyLODMeshReductionModuleName: string;
@@ -62053,6 +62110,23 @@ declare module "ue" {
         static StaticClass(): Class;
         static Find(OrigInName: string, Outer?: Object): RenderTargetExporterHDR;
         static Load(InName: string): RenderTargetExporterHDR;
+    }
+    
+    enum EIntTypes { int, int2, int3, int4, EIntTypes_MAX}
+    class RenderToTextureFunctionLibrary_C extends BlueprintFunctionLibrary {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        static ["Array to HLSL Int Array"](Type: EIntTypes, VariableName: $Ref<string>, int: $Ref<TArray<number>>, int2: $Ref<TArray<Vector2D>>, int3: $Ref<TArray<Vector>>, int4: $Ref<TArray<LinearColor>>, __WorldContext: $Nullable<Object>, String: $Ref<string>) : void;
+        static ["Set Canvas Material Scale and Position"](Size: Vector2D, Position: Vector2D, Scale: number, __WorldContext: $Nullable<Object>, ScreenPosition: $Ref<Vector2D>, ScreenSize: $Ref<Vector2D>) : void;
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): RenderToTextureFunctionLibrary_C;
+        static Load(InName: string): RenderToTextureFunctionLibrary_C;
+    }
+    
+    class RenderToTextureMacros_C extends Actor {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): RenderToTextureMacros_C;
+        static Load(InName: string): RenderToTextureMacros_C;
     }
     
     class ReplaceActorCommandlet extends Commandlet {
@@ -67548,13 +67622,6 @@ declare module "ue" {
         static Load(InName: string): TrueTypeFontFactory;
     }
     
-    class TS_Player_C extends Character {
-        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
-        static StaticClass(): Class;
-        static Find(OrigInName: string, Outer?: Object): TS_Player_C;
-        static Load(InName: string): TS_Player_C;
-    }
-    
     class TurnBasedBlueprintLibrary extends BlueprintFunctionLibrary {
         constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
         static GetIsMyTurn(WorldContextObject: $Nullable<Object>, PlayerController: $Nullable<PlayerController>, MatchID: string, bIsMyTurn: $Ref<boolean>) : void;
@@ -67564,6 +67631,13 @@ declare module "ue" {
         static StaticClass(): Class;
         static Find(OrigInName: string, Outer?: Object): TurnBasedBlueprintLibrary;
         static Load(InName: string): TurnBasedBlueprintLibrary;
+    }
+    
+    class Tutorial_BP_MacroLib_C extends EditorTutorial {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): Tutorial_BP_MacroLib_C;
+        static Load(InName: string): Tutorial_BP_MacroLib_C;
     }
     
     class TutorialSettings extends Object {

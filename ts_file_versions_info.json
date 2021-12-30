@@ -1,6 +1,6 @@
 {
     "C:/Users/futou/Documents/GitHub/BigMak/TypeScript/TS_Player.ts": {
-        "version": "d745bcb2f5342e9bca00ae4a6435e396"
+        "version": "31868c20d3e17c53008286becf836ee2"
     },
     "C:/Users/futou/Documents/GitHub/BigMak/Plugins/Puerts/Typing/cpp/index.d.ts": {
         "version": "76b0d090c31615f8c3fb5f21b8031395"
@@ -18,7 +18,7 @@
         "version": "e268e2c23c80472d64ab59c309a9764b"
     },
     "C:/Users/futou/Documents/GitHub/BigMak/Plugins/Puerts/Typing/ue/ue.d.ts": {
-        "version": "ad0701dae5c6188f0744d38158c1c10b"
+        "version": "49c78a325aa6498e939762d6d4fd1039"
     },
     "C:/Users/futou/Documents/GitHub/BigMak/Plugins/Puerts/Typing/ue/ue_s.d.ts": {
         "version": "4570db6b21470020d7cefc8bc9e39b8f"
@@ -130,5 +130,23 @@
     },
     "C:/Users/futou/Documents/GitHub/BigMak/Content/JavaScript/PuertsEditor/node_modules/typescript/lib/lib.dom.iterable.d.ts": {
         "version": "64c7394b4fec20b93c353fc725d4b50c"
+    },
+    "C:/Users/futou/Documents/GitHub/BigMak/TypeScript/SDamageResult.ts": {
+        "version": "d882eb04e85b2cabb9e08fd881bd3821"
+    },
+    "C:/Users/futou/Documents/GitHub/BigMak/TypeScript/TS_DamageResult.ts": {
+        "version": "d626de8eb5f8c08c696a610197f1a347"
+    },
+    "C:/Users/futou/Documents/GitHub/BigMak/TypeScript/CombatManagerBase.ts": {
+        "version": "e1b55e7e5baf1d4c42c1cc3043d8fb92"
+    },
+    "C:/Users/futou/Documents/GitHub/BigMak/TypeScript/Interfaces.ts": {
+        "version": "e6a916d61bb76a973e9dd57e013a34f6"
+    },
+    "C:/Users/futou/Documents/GitHub/BigMak/TypeScript/Structs.ts": {
+        "version": "c06a6411ae0b947be647d43de2c0a85e"
+    },
+    "C:/Users/futou/Documents/GitHub/BigMak/TypeScript/SDamageResult.1.ts": {
+        "version": ""
     }
 }

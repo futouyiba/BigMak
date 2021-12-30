@@ -75,3 +75,6 @@ DerivedDataCache/*
 
 .idea
 *.DotSettings.user
+Content/Blueprints/TypeScript/*
+Content/JavaScript/*
+ts_file_versions_info.json
