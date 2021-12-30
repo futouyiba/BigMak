@@ -1,6 +1,7 @@
 import * as UE from 'ue'
-import {edit_on_instance} from 'ue'
+import {edit_on_instance, PrimitiveComponent} from 'ue'
 import WGT_FloatingTextGenerator from './WGT_FloatingTextGenerator';
+import { SHitFeedbackSlot } from './Structs';
 
 
 class CombatManagerBase extends UE.ActorComponent{
@@ -29,6 +30,8 @@ class CombatManagerBase extends UE.ActorComponent{
      * System | Hit Feedback
      */
     MaterialFeedbackBodies:UE.TArray<UE.PrimitiveComponent>;
+    FeedbackMaterialTimer:UE.TimerHandle;
+    HitFeedbackSlots:UE.TMap<PrimitiveComponent,SHitFeedbackSlot>
 
     ReceiveBeginPlay(){
 

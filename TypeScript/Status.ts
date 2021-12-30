@@ -1,8 +1,9 @@
 import * as UE from "ue";
 import { edit_on_instance, DetourCrowdAIController } from "ue";
 import CombatManagerBase from "./CombatManagerBase";
+import Modifier from "./Modifier";
 
-export default class Status extends UE.ActorComponent{
+class Status extends UE.ActorComponent{
     /**
      * Metrics | HUD
      */
@@ -73,5 +74,23 @@ export default class Status extends UE.ActorComponent{
      */
     DistanceCheckerSource:UE.Actor;
 
-    
+    /**
+     * stop adding category from now.
+     * reason:
+     * 1. maybe switch to meta information decorators
+     * 2. reduce prototyping period, preparing for issues to come out.
+     */
+    EndTimer:UE.TimerHandle;
+
+    bExpired:boolean;
+
+    StackAmount:number;
+
+    ModifierID:number;
+
+    Modifiers:UE.TArray<Modifier>;
+
+
 }
+
+export default Status;
