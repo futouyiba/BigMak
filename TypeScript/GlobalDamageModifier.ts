@@ -1,7 +1,7 @@
 import * as ue from "ue";
 import {edit_on_instance, uproperty, ufunction} from "ue";
 import CombatManagerBase from "./CombatManagerBase";
-import {SDamageResult} from "./Structs";
+import {DamageResult} from "./DamageResult";
 
 
 class GlobalDamageModifier extends ue.Object {

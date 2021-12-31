@@ -1,17 +1,17 @@
 import * as UE from 'ue'
-import {SDamageResult} from "./Structs";
 import CombatManagerBase from './CombatManagerBase'
-import {SkillManager} from "./SkillManager";
+import SkillManager from "./SkillManager";
 import StatManager from "./StatManager";
 import {NetworkModifierManager} from "./NetworkModifierManager";
-import {ChatManager} from "./ChatManager";
+import ChatManager from "./ChatManager";
 import ActionManger from "./ActionManger";
+import DamageResult from "./DamageResult";
 
 export interface ICombat{
     // return: DiedFromDamages as boolean.
-    TakeDamage(InDamageResult:SDamageResult):boolean;
+    TakeDamage(InDamageResult:DamageResult):boolean;
     // return: Received as boolean.
-    OnDeath(InDamageResult:SDamageResult):boolean;
+    OnDeath(InDamageResult:DamageResult):boolean;
     FindTeam(ReturnTeam:UE.Team)
     FindWeapon():{WeaponActor:UE.Actor, SKComponent:UE.SkeletalMeshComponent};
     FindCombatManager():CombatManagerBase;

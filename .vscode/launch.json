@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach",
+            "port": 8080
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "启动程序",
+            "program": "${workspaceFolder}/TypeScript\\Interfaces.ts",
+            "preLaunchTask": "tsc: build - tsconfig.json",
+            "outFiles": [
+                "${workspaceFolder}/Content/JavaScript/**/*.js"
+            ]
+        }
+    ]
+}

@@ -8,7 +8,7 @@ public class BigMak : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "JsEnv","Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject","GameplayTags", "JsEnv","Engine", "InputCore" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

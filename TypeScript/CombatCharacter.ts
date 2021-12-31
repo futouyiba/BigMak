@@ -1,17 +1,36 @@
 import {Character} from "ue";
-import {ICombat, ISkill, IStats} from "./Interfaces";
+// import {ICombat, ISkill, IStats} from "./Interfaces";
 import CombatManagerBase from "./CombatManagerBase";
-import {SkillManager} from "./SkillManager";
+import SkillManager from "./SkillManager";
 import * as UE from "ue";
-import {SDamageResult} from "./Structs";
+import StatManager from "./StatManager";
+import DamageResult from "./DamageResult";
 
-class CombatCharacter extends Character implements ISkill, ICombat, IStats{
-    FindStatsManager(): import("./StatManager").default {
-        throw new Error("Method not implemented.");
+// class DamageResult extends UE.Struct {
+// // class DamageResult extends UE.Object{
+//     Amount: number;
+//     // Tags: UE.GameplayTagContainer;
+//     // HitResult: UE.HitResult;
+//     // Source: UE.Actor;
+//     // Owner:CombatManagerBase;
+//     // ExtraMultiplier: number;
+// }
+
+// class CombatCharacter extends Character implements ISkill, ICombat, IStats{
+class CombatCharacter extends Character {
+    ReceiveBeginPlay(): void {
+        console.log('character begin play');
     }
-    TakeDamage(InDamageResult: SDamageResult): boolean {
-        throw new Error("Method not implemented.");
+
+    FindStatsManager(): StatManager {
+        return undefined;
     }
+
+    TakeDamage(InDamageResult: DamageResult): boolean {
+        console.log('damage is...' + InDamageResult);
+        return false;
+    }
+
     FindCombatManager(): CombatManagerBase {
         return undefined;
     }
@@ -20,24 +39,29 @@ class CombatCharacter extends Character implements ISkill, ICombat, IStats{
         return undefined;
     }
 
-    FindTeam(ReturnTeam: UE.Team) {
-    }
+    // FindTeam():UE.Team {
+    //     return undefined;
+    // }
 
-    FindWeapon(): { WeaponActor: UE.Actor; SKComponent: UE.SkeletalMeshComponent } {
-        return {SKComponent: undefined, WeaponActor: undefined};
-    }
+    // FindWeapon(): [UE.Actor,  UE.SkeletalMeshComponent] {
+    // // FindWeapon(): { WeaponActor: UE.Actor, SKComponent: UE.SkeletalMeshComponent } {
+    //     return [undefined,undefined];
+    // }
 
-    OnDeath(InDamageResult: SDamageResult): boolean {
-        return false;
-    }
-
-    OnRevive(): boolean {
-        return false;
-    }
-
-    ShouldConsumeHit(): boolean {
-        return false;
-    }
+    //
+    // @UE.ufunction.ufunction(UE.ufunction.BlueprintCallable)
+    // OnDeath(InDamageResult: DamageResult): boolean {
+    //     console.log("character on death");
+    //     return false;
+    // }
+    //
+    // OnRevive(): boolean {
+    //     return false;
+    // }
+    //
+    // ShouldConsumeHit(): boolean {
+    //     return false;
+    // }
 
 }
 

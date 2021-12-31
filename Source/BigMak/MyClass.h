@@ -287,10 +287,27 @@ struct FStatModifier
     EValueModifierType ValueModifier;
     UPROPERTY()
     float Value;
-    // UPROPERTY()
-    // FGameplayTagContainer Tags;
+    UPROPERTY()
+    FGameplayTagContainer Tags;
     UPROPERTY()
     EStatusType Type;
+};
+
+USTRUCT()
+struct FDamageResult
+{
+    GENERATED_BODY()
+    
+    UPROPERTY()
+    float Amount;
+    UPROPERTY()
+    FGameplayTagContainer Tags;
+    UPROPERTY()
+    FHitResult HitResult;
+    UPROPERTY()
+    AActor* Source;
+    UPROPERTY()
+    float ExtraMultiplier;
 };
 
 /** Interface for actors that expose access to an skill manager component */
