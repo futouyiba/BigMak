@@ -3,9 +3,9 @@ import {Action, edit_on_instance, ETeam, TArray, Texture2D, TSubclassOf} from 'u
 import Skill from "./Skill";
 import ActionManger from "./ActionManger";
 import StatManager from "./StatManager";
-import {SSkillCost} from "./Structs";
 import GlobalDamageModifier from "./GlobalDamageModifier";
 import {IAction, ICombat, IStats} from './Interfaces'
+import {SSkillCost} from "./Structs/SSkillCost";
 
 class Modifier extends UE.Object{
  @edit_on_instance()

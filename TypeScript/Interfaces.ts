@@ -5,13 +5,13 @@ import StatManager from "./StatManager";
 import {NetworkModifierManager} from "./NetworkModifierManager";
 import ChatManager from "./ChatManager";
 import ActionManger from "./ActionManger";
-import DamageResult from "./DamageResult";
+import SDamageResult from "./Structs/SDamageResult";
 
 export interface ICombat{
     // return: DiedFromDamages as boolean.
-    TakeDamage(InDamageResult:DamageResult):boolean;
+    TakeDamage(InDamageResult:SDamageResult):boolean;
     // return: Received as boolean.
-    OnDeath(InDamageResult:DamageResult):boolean;
+    OnDeath(InDamageResult:SDamageResult):boolean;
     FindTeam(ReturnTeam:UE.Team)
     FindWeapon():{WeaponActor:UE.Actor, SKComponent:UE.SkeletalMeshComponent};
     FindCombatManager():CombatManagerBase;

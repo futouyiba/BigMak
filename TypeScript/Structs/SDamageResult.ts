@@ -1,7 +1,7 @@
 import * as UE from "ue";
 
 // class SDamageResult {
-class DamageResult extends UE.Struct{
+class SDamageResult extends UE.Struct{
     Amount: number;
     Tags: UE.GameplayTagContainer;
     HitResult: UE.HitResult;
@@ -10,4 +10,4 @@ class DamageResult extends UE.Struct{
     ExtraMultiplier: number;
 }
 
-export default DamageResult;
+export default SDamageResult;

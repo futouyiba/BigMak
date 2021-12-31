@@ -4,7 +4,7 @@ import CombatManagerBase from "./CombatManagerBase";
 import SkillManager from "./SkillManager";
 import * as UE from "ue";
 import StatManager from "./StatManager";
-import DamageResult from "./DamageResult";
+import SDamageResult from "./Structs/SDamageResult";
 
 // class DamageResult extends UE.Struct {
 // // class DamageResult extends UE.Object{
@@ -26,7 +26,7 @@ class CombatCharacter extends Character {
         return undefined;
     }
 
-    TakeDamage(InDamageResult: DamageResult): boolean {
+    TakeDamage(InDamageResult: SDamageResult): boolean {
         console.log('damage is...' + InDamageResult);
         return false;
     }
@@ -39,9 +39,9 @@ class CombatCharacter extends Character {
         return undefined;
     }
 
-    // FindTeam():UE.Team {
-    //     return undefined;
-    // }
+    FindTeam():UE.Team {
+        return undefined;
+    }
 
     // FindWeapon(): [UE.Actor,  UE.SkeletalMeshComponent] {
     // // FindWeapon(): { WeaponActor: UE.Actor, SKComponent: UE.SkeletalMeshComponent } {
@@ -50,10 +50,10 @@ class CombatCharacter extends Character {
 
     //
     // @UE.ufunction.ufunction(UE.ufunction.BlueprintCallable)
-    // OnDeath(InDamageResult: DamageResult): boolean {
-    //     console.log("character on death");
-    //     return false;
-    // }
+    OnDeath(InDamageResult: SDamageResult): boolean {
+        console.log("character on death");
+        return false;
+    }
     //
     // OnRevive(): boolean {
     //     return false;

@@ -1,8 +1,8 @@
 import * as UE from 'ue'
 import {edit_on_instance, ETeam, PrimitiveComponent, TArray, Team} from 'ue'
 import WGT_FloatingTextGenerator from './WGT_FloatingTextGenerator';
-import { SHitFeedbackSlot } from './Structs';
 import GlobalDamageModifier from "./GlobalDamageModifier";
+import {SHitFeedbackSlot} from "./Structs/SHitFeedbackSlot";
 
 
 class CombatManagerBase extends UE.ActorComponent{
