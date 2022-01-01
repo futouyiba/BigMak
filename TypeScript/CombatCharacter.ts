@@ -1,10 +1,17 @@
-import {Character} from "ue";
+import * as ue from "ue";
+import {BlueprintFunctionLibrary, Character, rpc, uclass} from "ue";
 // import {ICombat, ISkill, IStats} from "./Interfaces";
 import CombatManagerBase from "./CombatManagerBase";
 import SkillManager from "./SkillManager";
-import * as UE from "ue";
 import StatManager from "./StatManager";
-import SDamageResult from "./Structs/SDamageResult";
+
+// import SDamageResult from "./Structs/SDamageResult";
+
+@uclass.uclass(ue.uclass.BlueprintType)
+class SDamageResult {
+    foo: number;
+    bar: number;
+}
 
 // class DamageResult extends UE.Struct {
 // // class DamageResult extends UE.Object{
@@ -20,6 +27,11 @@ import SDamageResult from "./Structs/SDamageResult";
 class CombatCharacter extends Character {
     ReceiveBeginPlay(): void {
         console.log('character begin play');
+    }
+
+    @rpc.flags(rpc.FunctionFlags.FUNC_NetMulticast)
+    TestRpc(): void {
+        console.log("test rpc");
     }
 
     FindStatsManager(): StatManager {
@@ -39,7 +51,7 @@ class CombatCharacter extends Character {
         return undefined;
     }
 
-    FindTeam():UE.Team {
+    FindTeam(): ue.Team {
         return undefined;
     }
 
@@ -54,6 +66,7 @@ class CombatCharacter extends Character {
         console.log("character on death");
         return false;
     }
+
     //
     // OnRevive(): boolean {
     //     return false;

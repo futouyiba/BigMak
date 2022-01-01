@@ -1,7 +1,7 @@
 import * as ue from 'ue'
 import {Object} from "ue";
 
-class Bonuses extends Object{
+class SBonus extends Object{
     FlatBonus:number;
     RatioBonus: number;
 
@@ -12,4 +12,4 @@ class Bonuses extends Object{
     }
 }
 
-export default Bonuses;
+export default SBonus;
