@@ -1,11 +1,11 @@
 import * as UE from 'ue'
-import {Action, edit_on_instance, ETeam, TArray, Texture2D, TSubclassOf} from 'ue'
+import {Action, EAction, edit_on_instance, ETeam, TArray, Texture2D, TSubclassOf} from 'ue'
 import Skill from "./Skill";
 import ActionManger from "./ActionManger";
 import StatManager from "./StatManager";
 import GlobalDamageModifier from "./GlobalDamageModifier";
 import {IAction, ICombat, IStats} from './Interfaces'
-import {SSkillCost} from "./Structs/SSkillCost";
+import SSkillCost from "./Structs/SSkillCost";
 
 class Modifier extends UE.Object{
  @edit_on_instance()
@@ -101,7 +101,7 @@ class Modifier extends UE.Object{
   return actionMgr;
  }
 
- RemoveScriptedChanges(){}
+ RemoveScriptedChanges():void{}
 
  // Call this if you want to modify the target's combat team
  AddTeamModifier(NewTeam:ETeam):void{
@@ -147,6 +147,15 @@ class Modifier extends UE.Object{
   }
   return;
  }
+
+ ForbidAction(NewForbiddenAction:TArray<EAction>, ForceCancel:boolean):void{
+  let actionMgr = this.GetModActionManager();
+  if (!actionMgr) return;
+  let modifierIds = actionMgr.ForbidActions(NewForbiddenAction, ForceCancel);
+
+ }
+
+
 }
 
 export default Modifier;

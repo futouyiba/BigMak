@@ -1,4 +1,3 @@
-import * as ue from 'ue'
 import {Object} from "ue";
 
 class SBonus extends Object{
