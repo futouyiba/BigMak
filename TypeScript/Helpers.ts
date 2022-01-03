@@ -10,6 +10,7 @@ export function foreach<T>(tarray: TArray<T>, func:(T)=>void) {
     }
 }
 
+TArray<T>.prototype.foreach = 1;
 // TArray<T>.prototype.foreach = function (func: any) :void{
 //     let num = tarray.Num();
 //     for (let i = 0; i < num; i++) {

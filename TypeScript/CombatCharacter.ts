@@ -1,10 +1,10 @@
 import * as ue from "ue";
-import {BlueprintFunctionLibrary, Character, rpc, Struct, uclass, ufunction} from "ue";
+import {BlueprintFunctionLibrary, Character, rpc, Struct, TArray, uclass, ufunction} from "ue";
 // import {ICombat, ISkill, IStats} from "./Interfaces";
 import CombatManagerBase from "./CombatManagerBase";
 import SkillManager from "./SkillManager";
 import StatManager from "./StatManager";
-// import SDamageResult from "./Structs/SDamageResult";
+import SDamageResult from "./Structs/SDamageResult";
 
 // @uclass.uclass(uclass.BlueprintType)
 // class SDamageResult {
@@ -12,21 +12,32 @@ import StatManager from "./StatManager";
 //     bar: number;
 // }
 
-class SDamageResult extends Struct {
-// class DamageResult extends UE.Object{
-    Amount: number;
-    // Tags: UE.GameplayTagContainer;
-    // HitResult: UE.HitResult;
-    // Source: UE.Actor;
-    // Owner:CombatManagerBase;
-    // ExtraMultiplier: number;
-}
+// class SDamageResult extends Struct {
+// // class DamageResult extends UE.Object{
+//     Amount: number;
+//     // Tags: UE.GameplayTagContainer;
+//     // HitResult: UE.HitResult;
+//     // Source: UE.Actor;
+//     // Owner:CombatManagerBase;
+//     // ExtraMultiplier: number;
+// }
 
 // class CombatCharacter extends Character implements ISkill, ICombat, IStats{
 class CombatCharacter extends Character {
 
+    arr:TArray<number>;
+
     ReceiveBeginPlay(): void {
         console.log('character begin play');
+        this.TestForTArray();
+    }
+
+    TestForTArray():void{
+        let num = this.arr.Num();
+        for (let i = 0; i < num; i++) {
+            let ele = this.arr.Get(i);
+            console.log(i, ele);
+        }
     }
 
     // @rpc.flags(rpc.FunctionFlags.FUNC_NetMulticast)
