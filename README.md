@@ -10,7 +10,7 @@ BigMak是用C++ & Typescript（puerts） & Blueprint 三层结构来制作的多
 · GAS在一些方面偏笨重。cpp的部分用的宏很多，修改一些东西需要关注大量的编译错误。而在蓝图中有点事做不了，即使能做也不方便协作。
 
 ## 玩法是怎么样的？
-里面计划加1-3个小demo，放置战斗、tps都会尝试。
+里面计划加1-3个小demo，可能会围绕射击、动作。
 
 ## Typescript怎么引入的？
 使用腾讯的puerts库，地址为：https://github.com/Tencent/puerts/tree/master/unreal/Puerts 
