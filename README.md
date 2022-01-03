@@ -1,5 +1,7 @@
 # BigMak
  An open source project for multiplayer battle and skills using CPP & Typescript & Bluerpint.
+![914](https://user-images.githubusercontent.com/6793989/147895830-36df06f3-6f14-4e4c-89f6-d7376938b0a9.jpg)
+
 
 BigMak是用C++ & Typescript（puerts） & Blueprint 三层结构来制作的多人技能&战斗框架和demo。其中demo的玩法会比较偏放置战斗。
 
