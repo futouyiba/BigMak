@@ -33,11 +33,14 @@ class CombatCharacter extends Character {
     }
 
     TestForTArray():void{
-        let num = this.arr.Num();
-        for (let i = 0; i < num; i++) {
-            let ele = this.arr.Get(i);
-            console.log(i, ele);
-        }
+        // let num = this.arr.Num();
+        // for (let i = 0; i < num; i++) {
+        //     let ele = this.arr.Get(i);
+        //     console.log(i, ele);
+        // }
+        this.arr.foreach((ele)=>{
+            console.log(ele);
+        });
     }
 
     // @rpc.flags(rpc.FunctionFlags.FUNC_NetMulticast)

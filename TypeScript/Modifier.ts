@@ -170,34 +170,34 @@ class Modifier extends UE.Object {
         actionMgr.SetAction(newAction);
     }
 
-    ShutInputsDown(ForceActionCancel:boolean):void{
-     let actionMgr = this.GetModActionManager();
-     if (!actionMgr) return;
-     actionMgr.InputsEnabled = false;
-     if (ForceActionCancel){
-      actionMgr.CancelCurrentAction();
-     }
-     this.bInputsShutDown = true;
+    ShutInputsDown(ForceActionCancel: boolean): void {
+        let actionMgr = this.GetModActionManager();
+        if (!actionMgr) return;
+        actionMgr.InputsEnabled = false;
+        if (ForceActionCancel) {
+            actionMgr.CancelCurrentAction();
+        }
+        this.bInputsShutDown = true;
     }
 
- FindSkillToModify(SkillToModify:TSubclassOf<Skill>, RememberToBindIfNotFound: boolean):Skill {
-     if (this.TargetSkill) return this.TargetSkill;
-     let modTarget = this.GetModTarget();
-     if (!modTarget) return null;
-     let skillMgr:SkillManager = (modTarget as any).SkillManager;
-     // if ((modTarget as any).FindSkillManager) {skillMgr = (modTarget as any).FindSkillManager() as SkillManager;}
-     if (!skillMgr) return null;
-     let skill = skillMgr.HasSkill(SkillToModify)
-     if (skill){
-      this.TargetSkill = skill;
-      this.TargetSkill.CurrentModifiers.Add(this);
-      this.SkillModifierIndex = this.TargetSkill.CurrentModifiers.Num() - 1; //todo check without "-1"?
-      return skill;
-     } else {
-      if (RememberToBindIfNotFound)       this.RegisterAutoRebind(SkillToModify);
-      return null;
-     }
- }
+    FindSkillToModify(SkillToModify: TSubclassOf<Skill>, RememberToBindIfNotFound: boolean): Skill {
+        if (this.TargetSkill) return this.TargetSkill;
+        let modTarget = this.GetModTarget();
+        if (!modTarget) return null;
+        let skillMgr: SkillManager = (modTarget as any).SkillManager;
+        // if ((modTarget as any).FindSkillManager) {skillMgr = (modTarget as any).FindSkillManager() as SkillManager;}
+        if (!skillMgr) return null;
+        let skill = skillMgr.HasSkill(SkillToModify)
+        if (skill) {
+            this.TargetSkill = skill;
+            this.TargetSkill.CurrentModifiers.Add(this);
+            this.SkillModifierIndex = this.TargetSkill.CurrentModifiers.Num() - 1; //todo check without "-1"?
+            return skill;
+        } else {
+            if (RememberToBindIfNotFound) this.RegisterAutoRebind(SkillToModify);
+            return null;
+        }
+    }
 
     RegisterAutoRebind(ClassToWatch: TSubclassOf<Skill>) {
         let modTarget = this.GetModTarget();
@@ -205,7 +205,7 @@ class Modifier extends UE.Object {
         let skillMgr = (modTarget as any).SkillManager;
         if (!skillMgr) return;
         this.WantedSkillToModify = ClassToWatch;
-        this.OnSkillLearned
+        // this.OnSkillLearned todo
     }
 }
 

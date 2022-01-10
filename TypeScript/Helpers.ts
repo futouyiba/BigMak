@@ -1,16 +1,40 @@
 import * as ue from 'ue'
-import {TArray} from "ue";
+// import {TArray} from "ue";
 
-export function foreach<T>(tarray: TArray<T>, func:(T)=>void) {
+declare module "ue"{
+    interface Object{
+        CreateDefaultSubobjectGeneric<T extends ue.Object>(SubojectFName:string, ReturnType:ue.Class):T;
+    }
+
+    interface TArray<T>{
+        extendProp :number;
+        foreach(func:any):void;
+        //todo https://stackoverflow.com/questions/52844124/how-to-create-an-extension-method-for-a-specific-type-of-generic-type-in-typescr
+    }
+}
+
+ue.Object.prototype.CreateDefaultSubobjectGeneric = function CreateDefaultSubobjectGeneric<T extends ue.Object>(SubojectFName:string, ReturnType: ue.Class):T{
+    return this.CreateDefaultSubobject(SubojectFName, ReturnType, ReturnType, true, false, false) as T;
+}
+
+export function foreach<T>(tArray: ue.TArray<T>, func:(T)=>void) {
     // if (typeof func != "function") return;
-    let num = tarray.Num();
+    let num = tArray.Num();
     for (let i = 0; i < num; i++) {
-        let ele = tarray.Get(i);
+        let ele = tArray.Get(i);
         func(ele);
     }
 }
 
-TArray<T>.prototype.foreach = 1;
+ue.TArray.prototype.extendProp = 1;
+ue.TArray.prototype.foreach = function<T>(this:ue.TArray<T>,func:any):void{
+    console.log('foreach of TArray is ran over...');
+    let num = this.Num();
+    for (let i = 0; i < num; i++) {
+        let ele = this.Get(i);
+        func(ele);
+    }
+}
 // TArray<T>.prototype.foreach = function (func: any) :void{
 //     let num = tarray.Num();
 //     for (let i = 0; i < num; i++) {

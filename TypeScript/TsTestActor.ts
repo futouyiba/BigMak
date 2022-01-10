@@ -1,9 +1,21 @@
 import * as UE from 'ue'
-import {rpc, edit_on_instance} from 'ue'
+import {rpc, edit_on_instance, TArray} from 'ue'
 
 console.warn("Script init of TsTestActor ");
 
+// // according to https://stackoverflow.com/questions/52844124/how-to-create-an-extension-method-for-a-specific-type-of-generic-type-in-typescr
+// class Foo<T> {
+//     public foo() { console.log('foo'); }
+// }
+//
+// interface Foo<T> {
+//     bar: () => void;
+// }
+//
+// Foo.prototype.bar = () => { console.log('bar'); }
+
 class TsTestActor extends UE.Actor {
+
     tickCount: number;
 
     actor: UE.Actor;
@@ -27,11 +39,14 @@ class TsTestActor extends UE.Actor {
 
     set: UE.TSet<string>;
 
+    // foo:Foo<number>;
+
     //注意，继承UE类的js类，构造函数必须大写开头
     Constructor() {
         this.PrimaryActorTick.bCanEverTick = true;
         console.warn("TsTestActor.Constructor this.Add", this.Add(33, 44));
         this.tickCount = 0;
+        // this.foo = new Foo();
     }
 
     //override 1
@@ -69,6 +84,7 @@ class TsTestActor extends UE.Actor {
             console.warn("TsTestActor.ReceiveTick", DeltaSeconds, this.tickCount);
         }
         ++this.tickCount;
+        // this.arr.Foo();
     }
 
     //@cpp:text
