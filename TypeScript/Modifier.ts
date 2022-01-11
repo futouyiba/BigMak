@@ -199,13 +199,13 @@ class Modifier extends UE.Object {
         }
     }
 
-    RegisterAutoRebind(ClassToWatch: TSubclassOf<Skill>) {
+    RegisterAutoRebind(ClassToWatch: TSubclassOf<Skill>):void {
         let modTarget = this.GetModTarget();
         // let modTargetAny = modTarget as any;
         let skillMgr = (modTarget as any).SkillManager;
         if (!skillMgr) return;
         this.WantedSkillToModify = ClassToWatch;
-        // this.OnSkillLearned todo
+        // this.OnSkillLearned todo need delegate mechanism
     }
 }
 

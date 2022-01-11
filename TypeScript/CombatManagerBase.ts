@@ -1,8 +1,9 @@
 import * as UE from 'ue'
-import {edit_on_instance, ETeam, PrimitiveComponent, TArray, Team, uproperty} from 'ue'
+import {Actor, edit_on_instance, ETeam, PrimitiveComponent, TArray, Team, uproperty} from 'ue'
 import WGT_FloatingTextGenerator from './WGT_FloatingTextGenerator';
 import GlobalDamageModifier from "./GlobalDamageModifier";
 import SHitFeedbackSlot from "./Structs/SHitFeedbackSlot";
+import StatManager from "./StatManager";
 
 
 class CombatManagerBase extends UE.ActorComponent {
@@ -38,6 +39,20 @@ class CombatManagerBase extends UE.ActorComponent {
     HitFeedbackSlots: UE.TMap<PrimitiveComponent, SHitFeedbackSlot>
     @uproperty.uproperty(uproperty.Category="System | HitFeedback")
     GlobalCombatModifiers: TArray<GlobalDamageModifier>;
+    @uproperty.uproperty(uproperty.Category="References | Owner")
+    private RefStatSystem: StatManager;
+
+
+    GetPairedStatManager():StatManager{
+        if (this.RefStatSystem) {
+            return this.RefStatSystem;
+        }
+        else {
+            this.SetPairedStatManager();
+            return this.RefStatSystem;
+        }
+    }
+
 
     GetOwningTeam(): Team {
         //todo
@@ -51,6 +66,29 @@ class CombatManagerBase extends UE.ActorComponent {
 
     SetTeam(NewTeam: ETeam): void {
         return;//todo
+    }
+
+    // should be called on begin play
+    private SetPairedStatManager():void {
+        let user = this.GetUser();
+        let statMgr = (user as any).StatManager;
+        if (!statMgr) return;
+        this.RefStatSystem = statMgr;
+        statMgr.onStatUpdate.Add(this.OnHealthStatNotify);
+        this.StoreInitialHealthRep(null);
+        // return statMgr;
+    }
+
+    OnHealthStatNotify(OnHealthStatNotify: any) {
+        throw new Error("Method not implemented.");
+    }
+
+    GetUser():Actor{
+        return this.GetOwner();
+    }
+
+    private StoreInitialHealthRep(InStat:any) {
+        
     }
 }
 

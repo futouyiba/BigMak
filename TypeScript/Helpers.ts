@@ -8,7 +8,8 @@ declare module "ue"{
 
     interface TArray<T>{
         extendProp :number;
-        foreach(func:any):void;
+        foreach(func:(T)=>void):void;
+        Remove(eleToRm:T):boolean;
         //todo https://stackoverflow.com/questions/52844124/how-to-create-an-extension-method-for-a-specific-type-of-generic-type-in-typescr
     }
 }
@@ -27,14 +28,21 @@ export function foreach<T>(tArray: ue.TArray<T>, func:(T)=>void) {
 }
 
 ue.TArray.prototype.extendProp = 1;
-ue.TArray.prototype.foreach = function<T>(this:ue.TArray<T>,func:any):void{
+ue.TArray.prototype.foreach = function<T>(this:ue.TArray<T>,func:(e:T)=>void):void{
     console.log('foreach of TArray is ran over...');
     let num = this.Num();
     for (let i = 0; i < num; i++) {
         let ele = this.Get(i);
         func(ele);
     }
+};
+ue.TArray.prototype.Remove = function<T> (this:ue.TArray<T>, eleToRm:T):boolean{
+    let index = this.FindIndex(eleToRm);
+    if (index<=-1) return false;
+    this.RemoveAt(index);
+    return true;
 }
+
 // TArray<T>.prototype.foreach = function (func: any) :void{
 //     let num = tarray.Num();
 //     for (let i = 0; i < num; i++) {
